@@ -28,7 +28,6 @@ pipeline {
                 script {
                     // Build the project
                     bat 'npm run build'
-                    bat 'copy web.config build\\web.config'
                 }
             }
         }
