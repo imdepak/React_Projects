@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         BUILD_DIR = 'build'
-        DEPLOY_DIR = 'C:\\IIS\\React_TestProject'
+        DEPLOY_DIR = 'C:\\IIS\\React_TestProject' // Use double backslashes for Windows paths
     }
 
     stages {
@@ -35,8 +35,8 @@ pipeline {
         stage('Deploy') {
             steps {
                 script {
-                    // Deploy the build using robocopy
-                    bat "robocopy ${WORKSPACE}\\${BUILD_DIR} ${DEPLOY_DIR} /E /MIR"
+                    // Ensure proper quoting of destination directory for robocopy
+                    bat "robocopy ${WORKSPACE}\\${BUILD_DIR} \"${DEPLOY_DIR}\" /E /MIR"
                 }
             }
         }
