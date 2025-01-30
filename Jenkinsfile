@@ -3,13 +3,13 @@ pipeline {
 
     environment {
         BUILD_DIR = 'build'
-        DEPLOY_DIR = 'C:\\IIS\\React_TestProject' // Use double backslashes for Windows paths
+        DEPLOY_DIR = 'C:\\IIS\\React_TestProject' // Ensure the path is properly escaped with double backslashes
     }
 
     stages {
         stage('Checkout') {
             steps {
-                // Specify the branch explicitly
+                // Checkout code from GitHub repository
                 git branch: 'main', url: 'https://github.com/imdepak/React_Projects.git'
             }
         }
@@ -17,7 +17,7 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 script {
-                    // Install dependencies using npm
+                    // Install npm dependencies
                     bat 'npm install'
                 }
             }
@@ -26,7 +26,7 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    // Build the project using npm
+                    // Build the project
                     bat 'npm run build'
                 }
             }
@@ -35,8 +35,8 @@ pipeline {
         stage('Deploy') {
             steps {
                 script {
-                    // Ensure proper quoting of destination directory for robocopy
-                    bat "robocopy ${WORKSPACE}\\${BUILD_DIR} \"${DEPLOY_DIR}\" /E /MIR"
+                    // Ensure correct quoting of paths for robocopy
+                    bat """robocopy "${WORKSPACE}\\${BUILD_DIR}" "${DEPLOY_DIR}" /E /MIR"""
                 }
             }
         }
@@ -45,7 +45,7 @@ pipeline {
     post {
         always {
             echo 'Cleaning up...'
-            // Optional: Add cleanup steps here
+            // Optional: Add cleanup steps here if needed
         }
     }
 }
