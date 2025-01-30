@@ -49,7 +49,7 @@ const App = () => {
 
   return (
     <div>
-      <p>Hi There, I m Running  from CI/CD Testing...</p>
+      <p>Hi There, I m Running for JayaGeda...</p>
       {!isOnline && (
         <div className="notification">
           You are currently offline. Please check your internet connection.
