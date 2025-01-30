@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         BUILD_DIR = 'build'
-        DEPLOY_DIR = 'C:/IIS/React_TestProject'
+        DEPLOY_DIR = 'C:\\IIS\\React_TestProject'
     }
 
     stages {
