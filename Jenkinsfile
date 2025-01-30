@@ -11,6 +11,7 @@ pipeline {
             steps {
                 // Checkout code from GitHub
                 git 'https://github.com/imdepak/React_Projects.git'
+                branch: 'main'  // Make sure 'main' exists
             }
         }
 
