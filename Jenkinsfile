@@ -9,15 +9,15 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-               
-                git 'https://github.com/imdepak/React_Projects.git'
+                // Specify the branch explicitly
+                git branch: 'main', url: 'https://github.com/imdepak/React_Projects.git'
             }
         }
 
         stage('Install Dependencies') {
             steps {
                 script {
-                  
+                    // Install dependencies using npm
                     bat 'npm install'
                 }
             }
@@ -26,6 +26,7 @@ pipeline {
         stage('Build') {
             steps {
                 script {
+                    // Build the project using npm
                     bat 'npm run build'
                 }
             }
@@ -34,7 +35,8 @@ pipeline {
         stage('Deploy') {
             steps {
                 script {
-                    bat 'robocopy ${WORKSPACE}\\${BUILD_DIR} ${DEPLOY_DIR} /E /MIR'
+                    // Deploy the build using robocopy
+                    bat "robocopy ${WORKSPACE}\\${BUILD_DIR} ${DEPLOY_DIR} /E /MIR"
                 }
             }
         }
@@ -43,6 +45,7 @@ pipeline {
     post {
         always {
             echo 'Cleaning up...'
+            // Optional: Add cleanup steps here
         }
     }
 }
