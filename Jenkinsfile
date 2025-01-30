@@ -10,7 +10,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Checkout code from GitHub
-                git 'https://github.com/imdepak/React_Projects.git'
+                git 'https://github.com/imdepak/React_Projects.git', branch: 'main'
             }
         }
 
